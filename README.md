@@ -1,7 +1,5 @@
 <center>
 
-## Slicing TrainTicketBuying App❤️
-
 <h2><i class="fab fa-instagram"></i> Screenshots <i class="fas fa-camera"></i></h2>
 
 <table>
