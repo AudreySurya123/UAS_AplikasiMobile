@@ -8,6 +8,9 @@ class SeatPickerController extends State<SeatPickerView>
   static late SeatPickerController instance;
   late SeatPickerView view;
 
+  // Define a variable to store the selected seat
+  int? selectedSeat;
+
   @override
   void initState() {
     instance = this;
@@ -41,13 +44,18 @@ class SeatPickerController extends State<SeatPickerView>
     27
   ];
 
+  // Update the method to take the selected seat as a parameter
   updateSeat(int index) {
     if (selectedSeats.contains(index)) return;
 
     if (!usedSeats.contains(index)) {
       usedSeats.add(index);
+      // Update the selected seat variable
+      selectedSeat = index;
     } else {
       usedSeats.remove(index);
+      // Clear the selected seat variable
+      selectedSeat = null;
     }
     setState(() {});
   }

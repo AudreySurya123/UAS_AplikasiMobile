@@ -57,4 +57,9 @@ class DBHelper {
     return await db.query('user',
         where: 'email = ? AND password = ?', whereArgs: [email, password]);
   }
+
+  Future<int> updateUser(String currentUsername, Map<String, dynamic> updatedUser) async {
+    Database db = await instance.database;
+    return await db.update('user', updatedUser, where: 'name = ?', whereArgs: [currentUsername]);
+  }
 }

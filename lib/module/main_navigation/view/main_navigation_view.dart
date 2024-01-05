@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../dashboard/view/dashboard_view.dart';
 import '../controller/main_navigation_controller.dart';
 import '../../profile/view/profile_view.dart';
+import '../../train/view/train_view.dart'; // Import TrainView
 
 class MainNavigationView extends StatefulWidget {
   const MainNavigationView({Key? key}) : super(key: key);
@@ -9,7 +10,6 @@ class MainNavigationView extends StatefulWidget {
   @override
   State<MainNavigationView> createState() => MainNavigationController();
 
-  // Corrected: This should not be a constructor, but a method.
   Widget build(BuildContext context, MainNavigationController controller) {
     controller.view = this;
 
@@ -22,7 +22,7 @@ class MainNavigationView extends StatefulWidget {
           children: [
             const DashboardView(),
             Container(), // Placeholder for Order
-            Container(), // Placeholder for Train
+            TrainView(), // Use TrainView here
             const ProfileView(), // ProfileView
           ],
         ),

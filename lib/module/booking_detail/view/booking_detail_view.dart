@@ -120,7 +120,7 @@ class BookingDetailView extends StatefulWidget {
                                 ),
                               ),
                               Text(
-                                "18 Juni 2013",
+                                "5 Januari 2024",
                                 style: TextStyle(
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,

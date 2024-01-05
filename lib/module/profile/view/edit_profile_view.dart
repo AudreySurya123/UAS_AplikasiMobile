@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import '../../../db_helper.dart';
 
 class EditProfileView extends StatefulWidget {
-  final String currentUsername; // Pass the current username to the constructor
+  final String currentUsername;
 
   const EditProfileView({Key? key, required this.currentUsername}) : super(key: key);
 
@@ -17,7 +18,7 @@ class _EditProfileViewState extends State<EditProfileView> {
   @override
   void initState() {
     super.initState();
-    _usernameController.text = widget.currentUsername; // Set the current username in the controller
+    _usernameController.text = widget.currentUsername;
   }
 
   @override
@@ -32,44 +33,59 @@ class _EditProfileViewState extends State<EditProfileView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Username TextField
               TextField(
                 controller: _usernameController,
                 decoration: InputDecoration(
                   labelText: 'Username',
-                  labelStyle: TextStyle(color: Colors.black), // Set label text color to black
+                  labelStyle: TextStyle(color: Colors.black),
                 ),
+                style: TextStyle(color: Colors.black), // Set text color to black
               ),
               SizedBox(height: 16.0),
+              // Email TextField
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  labelStyle: TextStyle(color: Colors.black), // Set label text color to black
+                  labelStyle: TextStyle(color: Colors.black),
                 ),
+                style: TextStyle(color: Colors.black), // Set text color to black
               ),
               SizedBox(height: 16.0),
+              // Password TextField
               TextField(
                 controller: _passwordController,
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  labelStyle: TextStyle(color: Colors.black), // Set label text color to black
+                  labelStyle: TextStyle(color: Colors.black),
                 ),
                 obscureText: true,
+                style: TextStyle(color: Colors.black), // Set text color to black
               ),
               SizedBox(height: 32.0),
               ElevatedButton(
-                onPressed: () {
-                  // Handle saving profile changes here
-                  // You can use _usernameController.text, _emailController.text, _passwordController.text
+                onPressed: () async {
+                  // Handle saving profile changes to the database
+                  String username = _usernameController.text;
+                  String email = _emailController.text;
+                  String password = _passwordController.text;
+
+                  Map<String, dynamic> updatedUser = {
+                    'name': username,
+                    'email': email,
+                    'password': password,
+                  };
+
+                  await DBHelper.instance.updateUser(widget.currentUsername, updatedUser);
+
                   // For simplicity, we'll just pop the screen for now
                   Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blue, // Set button color
+                  primary: Colors.blue,
                 ),
-                child: Text(
-                  'Save Changes',
-                ),
+                child: Text('Save Changes'),
               ),
             ],
           ),
